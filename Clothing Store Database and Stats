@@ -1,0 +1,26 @@
+CREATE TABLE clothing_store (id integer primary key, type text, price integer, color text, size text);
+
+INSERT INTO clothing_store VALUES (1, "tops", 5.99, "red", "small");
+INSERT INTO clothing_store VALUES (2, "bottoms", 7.99, "blue", "small");
+INSERT INTO clothing_store VALUES (3, "socks", 2.99, "white", "one size");
+INSERT INTO clothing_store VALUES (4, "headbands", 1.99, "pink", "one size");
+INSERT INTO clothing_store VALUES (5, "tank tops", 6.99, "green", "small");
+INSERT INTO clothing_store VALUES (6, "shorts", 6.99, "blue", "medium");
+INSERT INTO clothing_store VALUES (7, "earrings", 2.99, "silver", "one size");
+INSERT INTO clothing_store VALUES (8, "jeans", 10.99, "blue", "small");
+INSERT INTO clothing_store VALUES (9, "dresses", 8.99, "red", "small");
+INSERT INTO clothing_store VALUES (10, "skirts", 6.99, "yellow", "small");
+INSERT INTO clothing_store VALUES (11, "undershirts", 5.99, "white", "small");
+INSERT INTO clothing_store VALUES (12, "hats", 3.99, "pink", "one size");
+INSERT INTO clothing_store VALUES (13, "jewelry", 2.99, "silver", "one size");
+INSERT INTO clothing_store VALUES (14, "hair clips", 1.99, "pink", "one size");
+INSERT INTO clothing_store VALUES (15, "gloves", 4.99, "black", "one size");
+
+--display the database.
+SELECT * FROM clothing_store;
+
+--display the colors in the database ordered by price.
+SELECT color FROM clothing_store ORDER BY price;
+
+--What items are in the store that are $3.99 and above grouped by color?
+SELECT * FROM clothing_store WHERE price >= 3.99 GROUP BY color
