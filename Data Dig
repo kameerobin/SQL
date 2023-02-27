@@ -59,30 +59,41 @@ INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Year,Birth_Place,Gender,A
 INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Year,Birth_Place,Gender,Alma_Mater,Undergraduate_Major,Graduate_Major,Military_Rank,Military_Branch,Space_Flights,Space_Flight_hr,Space_Walks,Space_Walks_hr,Missions,Death_Date,Death_Mission) VALUES ('Vance D. Brand',1966,5,'Retired',1931,'Longmont, CA','Male','University of Colorado; University of California Los Angeles','Business Management; Aeronautical Engineering','Business Administration',NULL,'US Marine Corps Reserves',4,752,0,0,'Apollo-Soyuz Test Project, STS-5 (Columbia), STS 41-B (Challenger), STS-35 (Columbia)',NULL,NULL);
 INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Year,Birth_Place,Gender,Alma_Mater,Undergraduate_Major,Graduate_Major,Military_Rank,Military_Branch,Space_Flights,Space_Flight_hr,Space_Walks,Space_Walks_hr,Missions,Death_Date,Death_Mission) VALUES ('Daniel C. Brandenstein',1978,8,'Retired',1943,'Watertown, WI','Male','University of Wisconsin','Mathematics & Physics',NULL,'Captain','US Navy (Retired)',4,789,0,0,'STS-8 (Challenger), STS 51-G (Discovery), STS-32 (Columbia), STS-49 (Endeavor)',NULL,NULL);
 
+Display Astronaut Data
 SELECT * FROM astronauts;
 
+Display astronauts after 1950
 SELECT Name FROM astronauts where Year > 1950;
 
+What is the average space flight hour of the astronauts
 Select avg(Space_Flight_hr) FROM astronauts;
 
+What is the maximum space flight hour
 SELECT max(Space_Flight_hr) FROM astronauts;
 
+What is the minimum space flight hour
 SELECT min(Space_Flight_hr) FROM astronauts;
 
+Disply active male astronauts
 SELECT Name FROM astronauts WHERE Status = "Active" and Gender = "Male";
 
+Display active female astronauts
 SELECT Name FROM astronauts WHERE Status = "Active" and Gender = "Female";
 
+Display retired astronauts
 SELECT Name FROM astronauts WHERE Status = "Retired";
 
+Display astronauts who majored in physics or engineering whether grad or undergrad
 SELECT Name FROM astronauts WHERE Graduate_Major
 LIKE("engineering") or Undergraduate_Major LIKE("physics");
 
+Display total flights of each astronauts
 SELECT Name, Space_Flights AS total_flights FROM astronauts;
 
+Display astronauts whose total flights are more than two
 SELECT Name, Space_Flights AS total_flights FROM astronauts GROUP BY Name HAVING total_flights > 2;
 
-
+Displays astronauts grouped by generation
 SELECT *,
     CASE
         WHEN Birth_Year > 1901 THEN "GI_Generation"
