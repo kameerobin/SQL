@@ -1,0 +1,41 @@
+CREATE TABLE movie_stars (id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, birthdate TEXT);
+
+INSERT INTO movie_stars VALUES (1, "Will", "Smith", "9/25/68");
+INSERT INTO movie_stars VALUES (2, "Jada", "Pinkett-Smith", "9/18/71");
+INSERT INTO movie_stars VALUES (3, "Ryan", "Reynolds", "10/23/76");
+INSERT INTO movie_stars VALUES (4, "Blake", "Lively", "8/25/87");
+
+CREATE TABLE highest_ranked_movies (id INTEGER PRIMARY KEY, title TEXT, ranking TEXT, year INTEGER);
+
+INSERT INTO highest_ranked_movies VALUES (1, "Men in Black", "91%", 1997);
+
+INSERT INTO highest_ranked_movies VALUES (2, "Free Angela & All Political Prisoners", "93%", 2012);
+
+INSERT INTO highest_ranked_movies VALUES (3, "Mississippi Grind", "91%", 2015);
+
+INSERT INTO highest_ranked_movies VALUES (4, "The Town", "92%", 2010);
+
+CREATE TABLE spouses (id INTEGER PRIMARY KEY, spouse_id INTEGER, marriage_year INTEGER);
+
+INSERT INTO spouses VALUES (1, 2, 1997);
+INSERT INTO spouses VALUES (2, 1, 1997);
+INSERT INTO spouses VALUES (3, 4, 2012);
+INSERT INTO spouses VALuES (4, 3, 2012);
+
+/*Display stars with their highest movie ranking*/
+
+SELECT first_name, last_name, hrm.ranking FROM movie_stars
+JOIN highest_ranked_movies as hrm
+ON hrm.id = movie_stars.id;
+
+/*Display stars with their most popular movie*/
+
+SELECT first_name, last_name, hrm.title FROM movie_stars
+JOIN highest_ranked_movies as hrm
+ON hrm.id = movie_stars.id;
+
+/*Display stars with their spouses and year of marriage*/
+
+SELECT first_name, last_name, spouse_id, marriage_year FROM movie_stars
+JOIN spouses 
+ON spouses.id = movie_stars.id;
