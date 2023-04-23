@@ -1,0 +1,47 @@
+/*How many orders were placed in January? Remember to filter out the blank and incorrect order IDs*/
+SELECT count(*) from JanSales
+WHERE length(orderID) = 6
+AND orderID <> 'Order ID';
+
+/*How many of those orders were for an iPhone?*/
+SELECT count(*) from JanSales
+WHERE Product = 'iPhone';
+
+/*Select the customer account numbers for all the orders that were placed in February*/
+SELECT acctnum from customers
+JOIN FebSales
+ON customers.order_id=FebSales.orderID;
+
+/*Which product was the cheapest one sold in January, and what was the price?*/
+SELECT Product, price from JanSales
+WHERE Product <> 'Product' OR '' AND price <> 'Price Each' OR ''
+ORDER BY price asc
+LIMIT 1;
+
+/*What is the total revenue for each product sold in January?*/
+SELECT sum(quantity)*price as revenue
+,product
+FROM BIT_DB.JanSales
+GROUP BY product;
+
+/*Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?*/
+SELECT SUM(quantity), product, SUM(quantity)*price as revenue
+FROM FebSales
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+GROUP BY product;
+
+/*How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?*/
+SELECT count(distinct cust.acctnum), 
+avg(quantity*price)
+FROM BIT_DB.FebSales AS Feb
+LEFT JOIN BIT_DB.customers AS cust
+ON FEB.orderid=cust.order_id
+WHERE Feb.Quantity>2
+AND length(orderid) = 6 
+AND orderid <> 'Order ID';
+
+/*List all the products sold in Los Angeles in February, and include how many of each were sold.*/
+SELECT product, SUM(quantity) 
+FROM FebSales
+WHERE location LIKE '%Los Angeles%'
+GROUP BY product;
