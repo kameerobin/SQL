@@ -1,0 +1,13 @@
+select price
+from superstore
+order by price;
+
+select sum(price)
+from superstore;
+
+select avg(price)
+from superstore
+where category like 'kitchen supplies';
+
+select count(item_name)
+from superstore;
